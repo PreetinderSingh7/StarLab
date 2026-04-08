@@ -455,3 +455,27 @@ select option { background: var(--bg3); }
 /* ── FADE IN ──────────────────────────────────────── */
 .fade-in { animation: fadeIn 0.25s ease forwards; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── EDITABLE TABLE INPUTS ───────────────────────── */
+.edit-label, .edit-val {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 5px 8px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+}
+.edit-label:focus, .edit-val:focus { border-color: var(--accent); outline: none; }
+
+/* ── ALL-CHARTS TYPE SELECTOR ────────────────────── */
+.all-chart-type {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text2);
+  font-size: 11px;
+  padding: 3px 8px;
+  cursor: pointer;
+  width: 100%;
+}
