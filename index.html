@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StatLab Pro — SPSS-Style Data Analyser</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-icon">∑</span>
+    <span class="logo-text">StatLab<em>Pro</em></span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#home"    class="nav-item active" data-page="home">
+      <span class="nav-icon">⌂</span> Home & Guide
+    </a>
+    <a href="#upload"  class="nav-item" data-page="upload">
+      <span class="nav-icon">⬆</span> Upload Data
+    </a>
+    <div class="nav-divider">Analysis</div>
+    <a href="#sheet1"  class="nav-item" data-page="sheet1">
+      <span class="nav-icon">①</span> Sheet 1 — Demographics
+    </a>
+    <a href="#sheet2"  class="nav-item" data-page="sheet2">
+      <span class="nav-icon">②</span> Sheet 2 — Scale Analysis
+    </a>
+    <a href="#sheet3"  class="nav-item" data-page="sheet3">
+      <span class="nav-icon">③</span> Sheet 3 — Scale Analysis
+    </a>
+    <div class="nav-divider">Inferential</div>
+    <a href="#chisq"   class="nav-item" data-page="chisq">
+      <span class="nav-icon">χ</span> Chi-Square Tests
+    </a>
+    <a href="#charts"  class="nav-item" data-page="charts">
+      <span class="nav-icon">◈</span> All Charts
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <span>StatLab Pro Alpha</span>
+  </div>
+</aside>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <button class="menu-toggle" id="menuToggle">☰</button>
+  <div class="topbar-title" id="pageTitle">Home & Guide</div>
+  <div class="topbar-actions">
+    <button class="btn btn-sm" id="exportBtn" style="display:none" onclick="AppExport.exportAll()">Export Results</button>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="mainContent">
+  <!-- Pages are injected here by app.js -->
+</main>
+
+<script src="modules/upload.js"></script>
+<script src="modules/descriptive.js"></script>
+<script src="modules/inferential.js"></script>
+<script src="modules/charts.js"></script>
+<script src="modules/export.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
