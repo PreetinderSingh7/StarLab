@@ -196,26 +196,58 @@ function renderSheetPage(sheetKey) {
 }
 
 function renderAboveBelowSection(sheetKey) {
-  const data  = AppState.sheets[sheetKey];
+  const data    = AppState.sheets[sheetKey];
   const headers = AppState.headers[sheetKey];
-  const result = AppDescriptive.aboveBelowAvg(data, headers);
+  const result  = AppDescriptive.aboveBelowAvg(data, headers);
   return `
   <div class="card" style="margin-bottom:24px">
     <div class="card-title">Respondent Categorisation <span class="badge">Mean ± 1 SD Method</span></div>
-    <div style="font-size:12.5px;color:var(--text3);margin-bottom:14px;line-height:1.7">
-      Each respondent's total score is computed. Grand Mean = <strong style="color:var(--accent)">${result.mean.toFixed(2)}</strong>,
-      SD = <strong style="color:var(--accent)">${result.sd.toFixed(2)}</strong>.
-      Above = score &gt; ${(result.mean+result.sd).toFixed(2)} |
-      Average = ${(result.mean-result.sd).toFixed(2)} to ${(result.mean+result.sd).toFixed(2)} |
-      Below = score &lt; ${(result.mean-result.sd).toFixed(2)}
+    <div style="font-size:12.5px;color:var(--text3);margin-bottom:14px;line-height:1.8">
+      Each respondent's total score is computed across all numeric columns.<br>
+      Grand Mean = <strong style="color:var(--accent)">${result.mean.toFixed(2)}</strong> &nbsp;|&nbsp;
+      Median = <strong style="color:var(--accent3)">${result.median.toFixed(2)}</strong> &nbsp;|&nbsp;
+      SD = <strong style="color:var(--accent)">${result.sd.toFixed(2)}</strong><br>
+      <span style="color:var(--accent3)">Above Average</span> = score &gt; ${(result.mean + result.sd).toFixed(2)} &nbsp;|&nbsp;
+      <span style="color:var(--text2)">Average</span> = ${(result.mean - result.sd).toFixed(2)} to ${(result.mean + result.sd).toFixed(2)} &nbsp;|&nbsp;
+      <span style="color:var(--danger)">Below Average</span> = score &lt; ${(result.mean - result.sd).toFixed(2)}
     </div>
+
     <div class="stat-grid">
-      <div class="stat-pill"><span class="stat-val" style="color:var(--accent3)">${result.above}</span><span class="stat-lbl">Above Average</span></div>
-      <div class="stat-pill"><span class="stat-val">${result.average}</span><span class="stat-lbl">Average</span></div>
-      <div class="stat-pill"><span class="stat-val" style="color:var(--danger)">${result.below}</span><span class="stat-lbl">Below Average</span></div>
-      <div class="stat-pill"><span class="stat-val">${result.mean.toFixed(2)}</span><span class="stat-lbl">Grand Mean</span></div>
-      <div class="stat-pill"><span class="stat-val">${result.sd.toFixed(2)}</span><span class="stat-lbl">Std Deviation</span></div>
+      <div class="stat-pill">
+        <span class="stat-val" style="color:var(--accent3)">${result.above}</span>
+        <span class="stat-lbl">Above Average</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val">${result.average}</span>
+        <span class="stat-lbl">Average</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val" style="color:var(--danger)">${result.below}</span>
+        <span class="stat-lbl">Below Average</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val">${result.mean.toFixed(2)}</span>
+        <span class="stat-lbl">Mean</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val" style="color:var(--accent3)">${result.median.toFixed(2)}</span>
+        <span class="stat-lbl">Median</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val">${result.sd.toFixed(2)}</span>
+        <span class="stat-lbl">SD</span>
+      </div>
     </div>
+
+    <div style="margin-top:10px;padding:10px 14px;background:var(--bg3);border-radius:var(--radius);font-family:var(--font-mono);font-size:13px;color:var(--text2)">
+      Above: <span style="color:var(--accent3);font-weight:600">${result.above}</span> &nbsp;
+      Average: <span style="color:var(--accent);font-weight:600">${result.average}</span> &nbsp;
+      Below: <span style="color:var(--danger);font-weight:600">${result.below}</span> &nbsp;
+      Mean: <span style="color:var(--accent);font-weight:600">${result.mean.toFixed(2)}</span> &nbsp;
+      Median: <span style="color:var(--accent3);font-weight:600">${result.median.toFixed(2)}</span> &nbsp;
+      SD: <span style="color:var(--text);font-weight:600">${result.sd.toFixed(2)}</span>
+    </div>
+
     <div class="chart-box" style="margin-top:14px">
       <canvas id="aboveBelow_${sheetKey}" height="180"></canvas>
     </div>
